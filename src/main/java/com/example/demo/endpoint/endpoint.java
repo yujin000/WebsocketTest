@@ -3,13 +3,10 @@ package com.example.demo.endpoint;
 import javax.websocket.Session;
 
 import com.example.demo.config.ApplicationContextProvider;
-import com.example.demo.dao.message_dao;
-import com.example.demo.dto.message_dto;
-import com.example.demo.serivice.message_serivice;
+import com.example.demo.service.MessageService;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.websocket.OnClose;
@@ -24,7 +21,7 @@ import java.util.Set;
 @ServerEndpoint("/chat")
 public class endpoint {
 
-    private message_serivice serivice = ApplicationContextProvider.getApplicationContext().getBean(message_serivice.class);
+    private MessageService service = ApplicationContextProvider.getApplicationContext().getBean(MessageService.class);
     //ApplicationContextProvider.getApplicationContext() -> 스프링 주소 / 디펜던시 룩업으로 꺼내온다
 
     private static Set<Session> clients = Collections.synchronizedSet(new HashSet<>());
@@ -53,7 +50,7 @@ public class endpoint {
         for(Session s : clients) {
             System.out.println("send data : " + msg);
             s.getBasicRemote().sendText(arr.toString());
-            serivice.insert(msg);
+            service.insert(msg);
         }
 
     }
