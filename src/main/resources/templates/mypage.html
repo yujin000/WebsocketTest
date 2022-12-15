@@ -10,7 +10,22 @@
 </head>
 <body>
     <div th:text="${session.nick+'님 안녕하세요.'}"></div>
-    <button type="button">1번방 입장</button>
-    <button type="button">2번방 입장</button>
+    <form action="/chatRoom/join" id="chatRoom">
+        <input type="hidden" id="roomNum" name="roomNum">
+    </form>
+    <button type="button" id="chat1">1번방 입장</button>
+    <button type="button" id="chat2">2번방 입장</button>
+
+    <script>
+        $("#chat1").on("click", function (){
+           $("#roomNum").val("1");
+           $("#chatRoom").submit();
+        })
+
+        $("#chat2").on("click", function (){
+            $("#roomNum").val("2");
+            $("#chatRoom").submit();
+        })
+    </script>
 </body>
 </html>

@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.server.standard.ServerEndpointExporter;
 import javax.websocket.server.ServerEndpointConfig.Configurator;
 
-
 @Configuration
 //@Configuration + @Bean
 // 외부라이브러 또는 내장 클래스를 bean으로 등록하고자 할 경우 사용.

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ChatUserService {
     @Autowired
-    ChatUserDAO dao;
+    private ChatUserDAO dao;
 
     public boolean isExist(ChatUserDTO dto) {
         if (dao.isExist(dto.getNick())==1) {

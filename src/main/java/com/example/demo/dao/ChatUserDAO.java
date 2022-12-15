@@ -8,10 +8,9 @@ import org.springframework.stereotype.Repository;
 public class ChatUserDAO {
 
     @Autowired
-    ChatUserMapper chatUserMapper;
+    private ChatUserMapper chatUserMapper;
 
     public int isExist(String nick) {
-        System.out.println("유저식별 : " + nick);
         return chatUserMapper.isExist(nick);
     }
 }
