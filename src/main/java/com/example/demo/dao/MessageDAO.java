@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 public class MessageDAO {
 
     @Autowired
-    MessageMapper messageMapper;
+    private MessageMapper messageMapper;
 
 
     public int insert(String msg) {

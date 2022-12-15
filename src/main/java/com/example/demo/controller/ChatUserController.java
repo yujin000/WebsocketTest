@@ -14,9 +14,9 @@ import javax.servlet.http.HttpSession;
 public class ChatUserController {
 
     @Autowired
-    HttpSession session;
+    private HttpSession session;
     @Autowired
-    ChatUserService service;
+    private ChatUserService service;
     @RequestMapping("login")
     public String login(ChatUserDTO dto, Model model) {
         if (service.isExist(dto)) {
