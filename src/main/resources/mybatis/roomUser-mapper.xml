@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.RoomUserMapper">
+    <select id="isExist" resultType="int">
+        select count(*) from room_user where room_num=#{roomNum} and nick=#{nick}
+    </select>
+
+    <insert id="insert">
+        insert into room_user values (#{roomNum}, #{nick}, sysdate)
+    </insert>
+
+</mapper>
