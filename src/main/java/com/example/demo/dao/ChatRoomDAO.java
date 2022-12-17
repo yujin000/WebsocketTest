@@ -11,7 +11,6 @@ public class ChatRoomDAO {
     private ChatRoomMapper chatRoomMapper;
 
     public int insert(int roomNum) {
-        System.out.println("채팅방 인원증가");
         return chatRoomMapper.update(roomNum);
     }
 }
