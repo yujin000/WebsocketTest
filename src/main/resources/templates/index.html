@@ -47,30 +47,38 @@
 
         $(function() {
 
-            let ws = new WebSocket("ws://192.168.50.19/chat"); // WebSocket 인스턴스 생성
+            let ws = new WebSocket("ws://192.168.219.102/chat/" + roomNum); // WebSocket 인스턴스 생성
 
             ws.onmessage = function(e){
                 console.log(e.data);
-                let data = JSON.parse(e.data);
+                //let data = JSON.parse(e.data);
+                let data = e.data;
 
-                for(let i = 0;i < data.length;i++){
+                //for(let i = 0;i < data.length;i++){
                     let outer = $("<div>");
                     let line = $("<div>");
                     line.addClass("msg-box")
 
-                    line.append(data[i].msg);
+                    //line.append(data[i].msg);
+                    line.append(data);
 
                     outer.append(line);
                     $(".message-area").append(outer);
                     updateScroll();
-                }
+                //}
             }
 
             $(".input-area").on("keydown", function(e) {
                 if (e.keyCode == 13) {
-                    let text = $(".input-area").text();
+                    // Json 생성
+                    let wsJson = {
+                        "roomNum" : roomNum,
+                        "nick" : nick,
+                        "msg" : $(".input-area").text()
+                    };
+                    //let text = $(".input-area").text();
                     $(".input-area").text("");
-                    ws.send(text);
+                    ws.send(JSON.stringify(wsJson));
                     return false;
                 }
             });
@@ -84,5 +92,13 @@
     <div class="input-area" contenteditable="true">
     </div>
 </div>
+
+<script type="text/javascript" th:inline="javascript">
+    /*<![CDATA[*/
+    let roomNum = /*[[ ${roomNum}]]*/;
+    let nick = /*[[${session.nick}]]*/;
+    /*]]>*/
+</script>
+
 </body>
 </html>
